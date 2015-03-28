@@ -6,8 +6,17 @@ import parse
 class Student(models.Model):
     sid = models.CharField(max_length=10)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.sid
+
+class Course(models.Model):
+    name = models.CharField(max_length=100)
+    student = models.ManyToManyField(Student)
+    day = models.IntegerField()
+    num = models.IntegerField()
+
+    def __unicode__(self):
+        return self.name
 
 class CourseList(models.Model):
     student = models.ForeignKey(Student)
@@ -21,7 +30,16 @@ class CourseList(models.Model):
         self.data = parse.parse(username, password)
         self.student = s
         self.save()
+        c = self.getCourseList()
+        for n in range(len(c)):
+            for d in range(len(c[n])):
+                if c[n][d].strip() != "":
+                    course, created = \
+                        Course.objects.get_or_create(name=c[n][d], 
+                                                     day=d+1, num=n+1)
+                    course.student.add(s)
+                    course.save()
 
-    def __str__(self):
-        return self.student.__str__()
+    def __unicode__(self):
+        return self.student.__unicode__()
 

@@ -9,8 +9,8 @@ def parse(username, password):
     reload(sys)
     sys.setdefaultencoding('UTF8')
 
-    user = username #"402631757"
-    passwd = password #"qaz987wsx"
+    user = username
+    passwd = password
     login_url = "http://portal.tku.edu.tw/un/EAILogin/login2.do?action=EAI"
     enter_url = "http://portal.tku.edu.tw/aissinfo/emis/TMWC090.aspx"
     course_url = "http://portal.tku.edu.tw/aissinfo/emis/TMWC090_result.aspx?YrSem=1032&stu_no=402631757"
