@@ -5,6 +5,7 @@ import parse
 # Create your models here.
 class Student(models.Model):
     sid = models.CharField(max_length=10)
+    gcmid = models.CharField(max_length=150)
 
     def __unicode__(self):
         return self.sid
