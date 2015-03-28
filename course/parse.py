@@ -5,7 +5,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
-def parse(courselist, username, password):
+def parse(username, password):
     reload(sys)
     sys.setdefaultencoding('UTF8')
 
@@ -54,6 +54,5 @@ def parse(courselist, username, password):
                     day.append(td[j].text)
             course.append(day)
 
-    courselist.data = json.dumps(course)
-    courselist.save()
+    return json.dumps(course)
 
